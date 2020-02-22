@@ -1,0 +1,11 @@
+{
+    "nodeLabels": ["A", "B", "C", "D", "E"],
+    "independentSets": {
+        "A": ["ACEL", "ACKL", "ACIL"],
+        "B": ["BFEJ", "BFEL"],
+        "C": ["CAEL", "CAFK"]
+    },
+    "nonIndependentSets": [
+        "ABCD", "BCDE", "CDEF", "EFGH"
+    ]
+}

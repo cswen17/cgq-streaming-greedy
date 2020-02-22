@@ -1,0 +1,1 @@
+        case "FunNodesIndependence" => new FunNodesIndependence().asInstanceOf[IndependenceAPI[Element]]

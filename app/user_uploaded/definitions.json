@@ -1,0 +1,30 @@
+{
+  "ground_set_api": {
+    "name": "NodesGround",
+    "object_import_path": "graph.NodesGround._",
+    "package": "graph",
+    "filename": "graph/NodesGround.scala",
+    "serial_id": "NodesGround"
+  },
+  "independence_api": {
+    "name": "NodesIndependence",
+    "object_import_path": "graph.NodesIndependence._",
+    "package": "graph",
+    "filename": "graph/NodesIndependence.scala",
+    "serial_id": "NodesIndependence"
+  },
+  "marginal_value_api": {
+    "name": "LogMarginalValue",
+    "object_import_path": "graph.LogMarginalValue._",
+    "package": "graph",
+    "filename": "graph/LogMarginalValue.scala",
+    "serial_id": "LogMarginalValue"
+  },
+  "element_companion": {
+    "name": "VertexSet",
+    "object_import_path": "graph._",
+    "package": "graph",
+    "filename": "graph/package.scala",
+    "serial_id": "VertexSet"
+  }
+}
