@@ -1,4 +1,4 @@
-# Streaming Algorithm for Submodular Function Maximization (cgq-streaming-greedy)
+# Streaming Algorithm for Submodular Function Maximization (cgq-streaming-greedy)[![Build Status](https://travis-ci.org/cswen17/cgq-streaming-greedy.svg?branch=master)](https://travis-ci.org/cswen17/cgq-streaming-greedy)
 
 cgq-streaming-greedy is a web service implementing a greedy
 Streaming Algorithm for Submodular Function Maximization called Streaming Greedy.
