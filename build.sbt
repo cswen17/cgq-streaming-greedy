@@ -21,6 +21,8 @@ libraryDependencies += guice
 // dependencyOverrides += "com.typesafe.play" %% "play-guice" % "2.6.5"
 // libraryDependencies ++= Seq("com.typesafe.play" % "play-json_2.12" % "2.8.1" artifacts(Artifact("play-json_2.12", "jar", "jar")))
 
+libraryDependencies += "com.typesafe.akka" %% "akka-actor" % "2.3.16"
+
 libraryDependencies ++= Seq(
   "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.2",
   "org.mockito" % "mockito-core" % "2.23.4"

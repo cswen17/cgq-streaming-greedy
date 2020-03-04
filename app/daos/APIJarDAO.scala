@@ -1,28 +1,29 @@
-package daos
+// package daos
 
-import javax.inject._
-import java.lang.ProcessBuilder
+// import javax.inject._
+// import java.lang.ProcessBuilder
 
-object APIJarDAO {
+// object APIJarDAO {
 
-  class APIJarDAO @Inject()(
-    @NamedDatabase("play") protected val dbConfigProvider: DatabaseConfigProvider
-    ) extends HasDatabaseConfigProvider[JdbcProfile] {
+//   class APIJarDAO @Inject()(
+//     @NamedDatabase("play") protected val dbConfigProvider: DatabaseConfigProvider
+//     ) extends HasDatabaseConfigProvider[JdbcProfile] {
 
-    private val scriptName: String = "write-factory.sh"
+//     private val scriptName: String = "write-factory.sh"
 
-    def createAPIJar(jarPath: String, username: String): String = {
-      // Creates the APIJar object in database given a jar name and username
-      // Invokes the write-factory.sh script
-      APIJarModel()
-    }
+//     def createAPIJar(jarPath: String, username: String): String = {
+//       // Creates the APIJar object in database given a jar name and username
+//       // Invokes the write-factory.sh script
+//       // APIJarModel()
+//       ""
+//     }
 
-    private def invokeWriteFactory(jarPath: String, username: String): Int = {
-      val pb: ProcessBuilder = new ProcessBuilder(scriptName, jarPath, username)
-      pb.start()
-      0
-    }
+//     private def invokeWriteFactory(jarPath: String, username: String): Int = {
+//       val pb: ProcessBuilder = new ProcessBuilder(scriptName, jarPath, username)
+//       pb.start()
+//       0
+//     }
 
-  }
+//   }
 
-}
+// }
