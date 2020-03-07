@@ -4,6 +4,6 @@ RUN cd /home
 
 WORKDIR /home
 
-COPY . .
+COPY .. .
 
 RUN sbt run
