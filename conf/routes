@@ -14,6 +14,8 @@ GET     /packaging                  controllers.PackagingController.create_empty
 GET     /packaging/debug            controllers.PackagingController.view_database
 PUT     /packaging/configure        controllers.PackagingController.add_config_key_value_pair
 GET     /packaging/validate         controllers.PackagingController.validate
+PUT     /packaging/presubmit        controllers.PackagingController.presubmit_jar
+PUT     /packaging/jar              controllers.PackagingController.submit_jar
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
