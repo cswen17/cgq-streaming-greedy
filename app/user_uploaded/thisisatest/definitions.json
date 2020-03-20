@@ -1,0 +1,23 @@
+{
+  "ground_set_api": {
+    "name": "FunNodesGround",
+    "object_import_path": "graph.FunNodesGround._",
+    "package": "graph",
+    "filename": "graph/FunNodesGround.scala",
+    "serial_id": "FunNodesGround"
+  },
+  "independence_api": {
+    "name": "FunNodesIndependence",
+    "object_import_path": "graph.FunNodesIndependence._",
+    "package": "graph",
+    "filename": "graph/FunNodesIndependence.scala",
+    "serial_id": "FunNodesIndependence"
+  },
+  "marginal_value_api": {
+    "name": "FunLogMarginalValue",
+    "object_import_path": "graph.FunLogMarginalValue._",
+    "package": "graph",
+    "filename": "graph/FunLogMarginalValue.scala",
+    "serial_id": "FunLogMarginalValue"
+  }
+}

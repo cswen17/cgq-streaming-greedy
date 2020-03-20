@@ -24,11 +24,17 @@ object APIJarModel {
     }
 
   }
-  
+
+  def empty(): APIJarModel = APIJarModel(
+    "",    // uuid
+    None,  // jar_file_name
+    None   // username
+  )
+
   class APIJars(tag: Tag) extends Table[APIJarSchema](tag, "API_JAR") {
     def uuid = column[String]("UUID", O.PrimaryKey, O.SqlType("VARCHAR(128)"))
-    def jarFileName = column[Option[String]]("JAR_FILE_NAME", O.PrimaryKey, O.SqlType("VARCHAR(256)"))
-    def username = column[Option[String]]("USERNAME", O.PrimaryKey, O.SqlType("VARCHAR(256)"))
+    def jarFileName = column[Option[String]]("JAR_FILE_NAME", O.SqlType("VARCHAR(256)"))
+    def username = column[Option[String]]("USERNAME", O.SqlType("VARCHAR(256)"))
 
     def * = (uuid, jarFileName, username)
   }

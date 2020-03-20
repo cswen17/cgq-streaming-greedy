@@ -12,7 +12,6 @@ object GroundSetAPIFactory {
 
       serialId match {
         case "GraphNodesGround" => new NodesGround().asInstanceOf[GroundSetAPI[Element, L, GroundSetBase[Element]]]
-        case "FunNodesGround" => new FunNodesGround().asInstanceOf[GroundSetAPI[Element, L, GroundSetBase[Element]]]
       }
 
     }

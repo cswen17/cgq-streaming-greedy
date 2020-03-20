@@ -12,7 +12,6 @@ object IndependenceAPIFactory {
 
       serialId match {
         case "GraphNodesIndependence" => new NodesIndependence().asInstanceOf[IndependenceAPI[Element]]
-        case "FunNodesIndependence" => new FunNodesIndependence().asInstanceOf[IndependenceAPI[Element]]
       }
 
     }

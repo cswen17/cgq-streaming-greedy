@@ -3,7 +3,8 @@ package controllers
 import scala.concurrent._
 import scala.concurrent.duration._
 
-import java.nio.file.Paths
+import java.lang.System
+import java.nio.file.{Path, Paths}
 import javax.inject._
 import play.api.Logger
 import play.api._
@@ -15,6 +16,9 @@ import slick.jdbc.JdbcProfile
 import slick.jdbc.MySQLProfile.api._
 import slick.jdbc.meta._
 
+import utils.PathUtils.INTERMEDIARY_HOLDING
+import daos.APIJarDAO._
+import models.APIJarModel._
 import models.JobTokenModel._
 import models.StreamingGreedyJobModel._
 import util.PackagingUtil._
@@ -31,7 +35,7 @@ class PackagingController @Inject()(
   val logger: Logger = Logger(this.getClass())
 
   private def initTable(): Unit = {
-    val schemas = streamingGreedyJobs.schema ++ jobTokens.schema
+    val schemas = streamingGreedyJobs.schema ++ jobTokens.schema ++ apiJars.schema
     db.run(DBIO.seq(schemas.createIfNotExists))
     ()
   }
@@ -112,8 +116,51 @@ class PackagingController @Inject()(
     }
   }
 
+  def presubmit_jar() = Action(parse.json) { implicit request: Request[JsValue] =>
+    // submits the username and jarfilepath associated with the jar
+    initTable()
+
+    val json: JsValue = request.body
+    val username: Option[String] = (json \ "username").validate[String] match {
+      case success: JsSuccess[String] => Some(success.get)
+      case error: JsError => None
+    }
+
+    val jarPath: Option[String] = (json \ "jarname").validate[String] match {
+      case success: JsSuccess[String] => Some(success.get)
+      case error: JsError => None
+    }
+
+    val apiJarDAO: APIJarDAO = new APIJarDAO(dbConfigProvider)
+
+    (username, jarPath) match {
+      case (Some(u), Some(j)) => {
+        val uuid: String = apiJarDAO.createAPIJar(u, j)
+        Ok(uuid)
+      }
+      case _ => {
+        BadRequest(s"One of username: $username or jarname: $jarPath missing")
+      }
+    }
+  }
+
   def submit_jar() = Action(parse.temporaryFile) { implicit request =>
-    request.body.moveTo(Paths.get("/tmp"), replace = true)
-    Ok("To Do")
+    initTable()
+
+    val apiJarDAO: APIJarDAO = new APIJarDAO(dbConfigProvider)
+
+    val queryString: Map[String, Seq[String]] = request.queryString
+    val qs: Seq[String] = queryString.getOrElse("uuid", Seq(""))
+    val apiJarUUID: String = qs.last
+    val apiJar: APIJarModel = apiJarDAO.fetchAPIJar(apiJarUUID)
+    val apiJarPath: String = apiJar.jar_file_name.getOrElse("")
+    val username: String = apiJar.username.getOrElse("")
+
+    // todo: replace /tmp with project_root//intermediary_holding
+    request.body.moveTo(Paths.get(INTERMEDIARY_HOLDING.toString), replace = true)
+
+    val processResult: Int = apiJarDAO.invokeWriteFactory(apiJarPath, username)
+
+    Ok(processResult.toString)
   }
 }
